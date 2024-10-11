@@ -105,7 +105,84 @@ const categoriesAll = async() =>{
     });
   }
   
+  const createNewPart = (imagee) => {
+    const createNEWSection = document.getElementById('createNEWSection')
+    const div = document.createElement('div')
+    div.innerHTML=`
+    <img class="rounded-xl shadow-md p-2" src="${imagee}" alt="" />
+    ` 
+    createNEWSection.append(div)
+  }
   
+  const createModal = async(petId)=>{
+    console.log(petId)
+        const res = await fetch (`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
+        const data = await res.json()
+        MODAL(data.petData)
+  }
+  // create a modal
+  const MODAL = (details) =>{
+    const {breed,petId,category,date_of_birth,price,image,gender,pet_details,vaccinated_status,pet_name,}= details;
+    const modalContainer = document.getElementById('modal-Container')
+    modalContainer.innerHTML=`
+    <dialog id="my_modal_1" class="modal">
+    <div class="modal-box">
+     <figure class="p-2 ">
+             <img class="w-full rounded-lg" src=${image}  />
+           </figure>
+        <div class="p-2 ">
+        <h3 class="text-[22px] font-bold text-[#131313]">${pet_name?pet_name: 'N/A'}      
+        <div class="flex space-x-9">
+            <div>
+                  <p class="text-start text-base font-normal text-[#131313B3]">
+                    <i class="fa-solid fa-cubes mr-2"></i> Breed:${breed}
+                  </p>
+                 
+                  <p class="text-start text-base font-normal text-[#131313B3]">
+                    <i class="fa-solid fa-venus mr-2"></i> Gender: ${gender?gender: "N/A"}
+                  </p>
+                  <p class="text-start text-base font-normal text-[#131313B3]">
+                    <i class="fa-solid fa-venus mr-2"></i> Gender: ${vaccinated_status?vaccinated_status: "N/A"}
+                  </p>
+                 
+            </div>
+          <div>
+              <p class="text-start text-base font-normal text-[#131313B3]">
+                    <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${date_of_birth?date_of_birth: 'N/A'}
+              </p>
+               <p class="text-start text-base font-normal text-[#131313B3]">
+                    <i class="fa-solid fa-dollar-sign mr-2"></i> Price: ${price?price: "N/A"}
+              </p>
+          </div>
+        </div>
+        <hr/>
+        <h1 class="font-bold mt-3">Details Information</h1>
+        <p>${pet_details}</p>
+      <div id="modalBtn" class="text-center  mt-2 mx-auto ">
+        <form method="dialog">
+          <div><button class="text-white rounded-lg w-full bg-btnclr text-2xl py-3">Close</button></div>
+        </form>
+      </div>
+    </div>
+    </dialog>
+    `
+  my_modal_1.showModal()
+  }
+  // create congretuletions Button
+  const adoptCongratulations = (petId) =>{
+    my_modal_2.showModal()
+    const countContainer = document.getElementById('count');
+    let count = 3;
+    const intervalId = setInterval(() => {
+      count--;
+      countContainer.innerHTML = count;
+      if( count <= 0){
+        clearInterval(intervalId);
+        my_modal_2.close()  
+      }
+    }, 1000);
+    
+  }
   const sortPrice =async() =>{
     const response = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
     const data = await response.json();
