@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peddy-Pet Adoption Platform</title>
+
+    <!-- Tailwind and DaisyUI CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font Lato CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .font-lato {
+            font-family: "Lato", sans-serif;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        btnclr: '#0E7A81',
+                        bgColor : '#F9F7F3',
+                        gray:'#131313'
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-lato">
+    <header>
+        <!-- navbar -->
+        <nav class="w-11/12 mt-4 mx-auto  justify-between flex px-2">
+            <div class="flex space-x-3">
+                <div class="flex items-center"><img src="images/logo.webp" alt=""></div>
+                <h3 class="font-bold text-2xl">Peddy</h3>
+            </div>
+            <div class="sm:flex hidden space-x-4 ">
+                <p class="text-[gray]">Home</p>
+                <p class="text-[gray]">Shop</p>
+                <p class="text-[gray]">Contact</p>
+            </div>
+          <img width="24" height="16" src="https://img.icons8.com/android/24/user.png" alt="user"/>
+        </nav>
+    </header>
+    <main >
+        <div class="w-11/12 mt-14 mx-auto">
+             <div class="text-center space-y-3 w-3/4 mx-auto">
+                <h2 class="text-center text-gray-500 font-bold">Bringing Families Together ❤️‍🔥 </h2> 
+                <h5 class="text-6xl font-extrabold">Your Path to Adoption  <br> Starts Here </h5>
+                <p class="text-center text-black font-medium text-base">Begin your journey with personalized guidance, expert support, and a caring community dedicated to helping <br> you navigate every step of the adoption process with confidence.</p>
+           <a href="#connent" class="btn bg-btnclr text-white">View More</a>
+             </div>
+              <div class=" max-w-prose mx-auto mt-3">
+                <img src="images/pet.webp" alt="">
+              </div>
+
+               <div class="w-3/4 mx-auto mt-8 space-y-3" id="connent">
+                <h2 class="text-3xl font-extrabold text-center">Adopt  Your  Best Friend</h2>
+                <p class="text-center font-medium">Begin your journey with personalized guidance, expert support, and a caring community dedicated 
+                  <br>  to helping you navigate every step of the adoption process with confidence.</p>
+               </div>
+
+                <div id="buttonofanimal" class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center mt-6 font-[inter]"> </div>
+               <div class="mt-7 md:flex text-center space-y-3 justify-between items-center px-4">
+                    <h3 class="font-black">Best Deal For You</h3>
+                    <button onclick="sortPrice()"  class="btn bg-btnclr text-white ">Sort by Price</button>
+               </div>
+              <!-- loading button -->
+               <div class="flex justify-center">
+                <span class="loading loading-bars hidden loading-lg" id="loading"></span>
+
+               </div>
+              <!-- card container -->
+                   <section class=" mx-auto md:grid md:grid-cols-5 mt-4">
+                    <div class=" md:col-span-4">
+                      <div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 " id="card-container">
+                      </div>
+                    </div>
+                  
+                    <div id="aa" class="md:col-span-1 my-2 md:mt-0 rounded-lg" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+                      <div id="createNEWSection" class="rounded-xl grid grid-cols-2 justify-between gap-2 p-2">
+                    </div>
+                </div>
+            </section>
+                        
+            </div>
+          </div>
+        <!-- Show Congretuletions -->
+        <dialog id="my_modal_2" class="modal">
+          <div class="modal-box">
+            <div class="flex justify-center"><img src="images/Handshake.jpg" alt="Handshake-img"></div>
+            <div class="flex justify-center"><p class="text-black font-extrabold text-4xl">Congrates</p></div>
+            <p class="py-2 text-center font-bold text-2xl">Adoption Process is Start For Your Pet</p>
+            <h3 id="count" class="text-center font-extrabold text-4xl">3</h3>
+            <div class="modal-action">
+            </div>
+          </div>
+        </dialog>
+        <!-- show modal -->
+        <div id="modal-Container"></div>   
+    </main> <br> <br>
+    
+    <section class="bg-neutral">
+        <footer class="footer bg-zinc-900 text-base-content text-white p-10 justify-between">
+            <nav>
+                <div class="flex space-x-3">
+                    <div class="flex items-center"><img src="images/logo.webp" alt=""></div>
+                    <h3 class="font-bold text-2xl">Peddy</h3>
+                </div>
+              <a class="link link-hover">Location:  av. Washington 165, NY CA 54003</a>
+              <a class="link link-hover">Phone: +31 85 964 47 25</a>
+              <a class="link link-hover">Email: info@peddy.com</a>
+              <a class="link link-hover">Openings hours: 9.00 AM - 5.00 PM</a>
+              <div class="flex space-x-5">
+                <a href="https://www.facebook.com/amanseo2/" target="_blank"><i class="fa-brands fa-facebook text-blue-600"></i></a>
+                <a href="https://www.x.com/" target="_blank"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <a href="https://www.youtube.com/"target="_blank"><i class="fa-brands fa-youtube text-red-600"></i></a>
+                <a href="https://www.instagram.com/seoaman/"target="_blank"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </nav>
+            <nav>
+              <h6 class="footer-title text-white">Useful Links</h6>
+              <a class="link link-hover">Home</a>
+              <a class="link link-hover">About Us</a>
+              <a class="link link-hover">Animals</a>
+              <a class="link link-hover">Foundation</a>
+              <a class="link link-hover">Contact</a>
+            </nav>
+            <nav>
+              <h6 class="footer-title text-white">Drop a Message</h6>
+              <input type="text" placeholder="Enter Your Mail" class="input input-bordered w-full max-w-xs bg-black" />
+              <button class="btn bg-btnclr text-white">Subscribe</button>
+            </nav>
+          </footer>
+    </section>
+
+    <script src="JS/scirpt.js"></script>
+</body>
+</html>
